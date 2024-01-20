@@ -1,14 +1,6 @@
 // 导入 generateNanoid 函数，用于生成随机 ID
 import { generateNanoid } from '@/utility/nanoid';
 
-// 导入 AWS S3 SDK 中的相关命令和客户端
-import {
-  S3Client,
-  CopyObjectCommand,
-  DeleteObjectCommand,
-  ListObjectsCommand,
-  PutObjectCommand,
-} from '@aws-sdk/client-s3';
 // 导入 UPYUN JS SDK
 import upyun from 'upyun';
 // import { createReadStream } from 'fs';
@@ -65,36 +57,12 @@ declare type upyun = {
 
 var upyunClient = new upyun.Client(bucket, {}, getHeaderSign);
 
-
-
-
-
-
-
-// 定义用于获取预签名 URL 的 API 路径
-const API_PATH_PRESIGNED_URL = '/api/aws-s3/presigned-url';
-
-// 创建 AWS S3 客户端实例
-export const awsS3Client = () => {
-  return new S3Client({
-    region: AWS_S3_REGION,
-    credentials: {
-      accessKeyId: AWS_S3_ACCESS_KEY,
-      secretAccessKey: AWS_S3_SECRET_ACCESS_KEY,
-    },
-  });
-};
-
 // 检查给定 URL 是否来自 AWS S3
 export const isUrlFromAwsS3 = (url: string) =>
   url.startsWith(AWS_S3_BASE_URL);
 
 // 生成指定长度的随机 ID
 const generateBlobId = () => generateNanoid(16);
-
-// 创建用于上传对象的 PutObjectCommand 实例
-export const awsS3PutObjectCommandForKey = (Key: string) =>
-  new PutObjectCommand({ Bucket: AWS_S3_BUCKET, Key, ACL: 'public-read' });
 
 // 从客户端上传文件到 AWS S3，并返回对象的 URL
 export const awsS3UploadFromClient = async (
