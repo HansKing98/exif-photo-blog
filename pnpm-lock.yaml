@@ -35,9 +35,6 @@ dependencies:
   '@types/react-dom':
     specifier: 18.2.18
     version: 18.2.18
-  '@types/upyun':
-    specifier: ^3.4.3
-    version: 3.4.3
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.18.0
     version: 6.19.0(@typescript-eslint/parser@6.19.0)(eslint@8.56.0)(typescript@5.3.3)
@@ -2560,12 +2557,6 @@ packages:
 
   /@types/tough-cookie@4.0.5:
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
-    dev: false
-
-  /@types/upyun@3.4.3:
-    resolution: {integrity: sha512-iTZTvDxt1h4dmZeJnWsB7YeVRwTwEr8GE22LSKM3F464+4VnaUoIYtcwqkWnxEDPV97ZN3XA0BzSgCx84QR8jA==}
-    dependencies:
-      '@types/node': 20.11.5
     dev: false
 
   /@types/yargs-parser@21.0.3:
