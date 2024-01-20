@@ -206,11 +206,15 @@ export const dateRangeForPhotos = (
   if (explicitDateRange || photos.length > 0) {
     const photosSorted = sortPhotosByDate(photos);
     start = formatDateFromPostgresString(
-      explicitDateRange?.start ?? photosSorted[photos.length - 1].takenAtNaive,
-      true,
+      explicitDateRange?.start
+        ? photosSorted[photos.length - 1]?.takenAtNaive
+        : '2018-08-08 08:08:08',
+      true
     );
     end = formatDateFromPostgresString(
-      explicitDateRange?.end ?? photosSorted[0].takenAtNaive,
+      explicitDateRange?.end 
+        ? photosSorted[0]?.takenAtNaive
+        : '2018-08-08 08:08:08',
       true
     );
     description = start === end

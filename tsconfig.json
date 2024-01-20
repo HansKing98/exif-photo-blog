@@ -37,5 +37,5 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "src/services/blob/upyun.js", "src/api/upyun copy.js"  ]
 }

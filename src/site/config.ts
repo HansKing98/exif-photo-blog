@@ -45,6 +45,14 @@ export const HAS_AWS_S3_STORAGE =
   (process.env.AWS_S3_ACCESS_KEY ?? '').length > 0 &&
   (process.env.AWS_S3_SECRET_ACCESS_KEY ?? '').length > 0;
 
+// UPYUN 
+export const HAS_UPYUN_STORAGE_CLIENT =
+  (process.env.NEXT_PUBLIC_UPYUN_HOSTNAME ?? '').length > 0 &&
+  (process.env.NEXT_PUBLIC_UPYUN_SERVICE_NAME ?? '').length > 0;
+export const HAS_UPYUN_STORAGE =
+  (process.env.NEXT_PUBLIC_UPYUN_HOSTNAME ?? '').length > 0 &&
+  (process.env.NEXT_PUBLIC_UPYUN_SERVICE_NAME ?? '').length > 0;
+
 // SETTINGS
 
 export const PRO_MODE_ENABLED = process.env.NEXT_PUBLIC_PRO_MODE === '1';
