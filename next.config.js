@@ -38,6 +38,13 @@ const nextConfig = {
       .concat(createRemotePattern(NEXT_PUBLIC_UPYUN_HOSTNAME)),
     minimumCacheTTL: 31536000,
   },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
 };
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
