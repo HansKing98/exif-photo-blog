@@ -10,14 +10,8 @@ const AWS_S3_HOSTNAME =
   process.env.NEXT_PUBLIC_AWS_S3_BUCKET &&
   process.env.NEXT_PUBLIC_AWS_S3_REGION
     // eslint-disable-next-line max-len
-    ? `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET}.s3.${process.env.NEXT_PUBLIC_AWS_S3_REGION}`
+    ? `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET}.s3.${process.env.NEXT_PUBLIC_AWS_S3_REGION}.amazonaws.com`
     : undefined;
-
-const NEXT_PUBLIC_UPYUN_HOSTNAME =
-  process.env.NEXT_PUBLIC_UPYUN_SERVICE_NAME &&
-    process.env.UPYUN_OPERATOR_NAME &&
-    process.env.UPYUN_OPERATOR_PASSWORD &&
-    process.env.NEXT_PUBLIC_UPYUN_HOSTNAME ? process.env.NEXT_PUBLIC_UPYUN_HOSTNAME : undefined;
 
 const createRemotePattern = (hostname) => hostname
   ? {
@@ -34,8 +28,7 @@ const nextConfig = {
     imageSizes: [200],
     remotePatterns: []
       .concat(createRemotePattern(VERCEL_BLOB_HOSTNAME))
-      .concat(createRemotePattern(AWS_S3_HOSTNAME))
-      .concat(createRemotePattern(NEXT_PUBLIC_UPYUN_HOSTNAME)),
+      .concat(createRemotePattern(AWS_S3_HOSTNAME)),
     minimumCacheTTL: 31536000,
   },
 };

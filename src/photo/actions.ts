@@ -28,11 +28,8 @@ import { extractExifDataFromBlobPath } from './server';
 
 export async function createPhotoAction(formData: FormData) {
   const photo = convertFormDataToPhotoDbInsert(formData, true);
-  const updatedUrl = await convertUploadToPhoto(
-    photo.url,
-    photo.title || '',
-    photo.id
-  );
+
+  const updatedUrl = await convertUploadToPhoto(photo.url, photo.id);
 
   if (updatedUrl) { photo.url = updatedUrl; }
 

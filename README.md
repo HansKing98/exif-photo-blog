@@ -1,29 +1,5 @@
 # 📷 `EXIF` Photo Blog
 
-Features：
-
-> 1. 增加又拍云存储 - 通过环境变量控制
->
-> ```bash
-> # UPYUN PUBLIC
-> # 又拍云配置的域名
-> NEXT_PUBLIC_UPYUN_HOSTNAME=xxx.xx.com
-> # 又拍云 服务名称
-> NEXT_PUBLIC_UPYUN_SERVICE_NAME=xxx
-> NEXT_PUBLIC_UPYUN_PHOTO_PATH='/gallery'
-> NEXT_PUBLIC_UPYUN_UPLOAD_PATH='/gallery-upload'
-> 
-> # UPYUN
-> # 又拍云 操作员
-> UPYUN_OPERATOR_NAME=xxxx
-> # 又拍云 操作员密码
-> UPYUN_OPERATOR_PASSWORD=xxxxxxxx
-> 
-> ```
-
-
-# 以下下是原文档，未做修改
-
 https://github.com/sambecker/exif-photo-blog/assets/169298/4253ea54-558a-4358-8834-89943cfbafb4
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Photo+Blog&demo-description=Store+photos+with+original+camera+data&demo-url=https%3A%2F%2Fphotos.sambecker.com&demo-image=https%3A%2F%2Fphotos.sambecker.com%2Ftemplate-image-tight&project-name=Photo+Blog&repository-name=exif-photo-blog&repository-url=https%3A%2F%2Fgithub.com%2Fsambecker%2Fexif-photo-blog&from=templates&skippable-integrations=1&teamCreateStatus=hidden&stores=%5B%7B%22type%22%3A%22postgres%22%7D%2C%7B%22type%22%3A%22blob%22%7D%5D)

@@ -49,8 +49,7 @@ export const formatCameraText = (
   includeMakeApple?: boolean,
 ) => {
   // Remove potential duplicate make from model
-  // FIX DEBUG 相机型号不存在 时 报错
-  const model = modelRaw?.replace(`${make} `, '');
+  const model = modelRaw.replace(`${make} `, '');
   return make === 'Apple' && !includeMakeApple
     ? model
     : `${make} ${model}`;

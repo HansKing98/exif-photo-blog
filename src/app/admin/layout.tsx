@@ -15,12 +15,14 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [countPhotos, countUploads, countTags] = await Promise.all([
+  const [
+    countPhotos,
+    countUploads,
+    countTags,
+  ] = await Promise.all([
     getPhotosCountIncludingHiddenCached(),
-    getBlobUploadUrlsNoStore().then((urls) => {
-      return urls.length;
-    }),
-    getUniqueTagsCached().then((tags) => tags.length),
+    getBlobUploadUrlsNoStore().then(urls => urls.length),
+    getUniqueTagsCached().then(tags => tags.length),
   ]);
 
   const navItemPhotos = {

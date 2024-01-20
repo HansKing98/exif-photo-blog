@@ -8,16 +8,12 @@ import {
 import {
   AWS_S3_BASE_URL,
   awsS3Copy,
-  awsS3Move,
   awsS3Delete,
   awsS3List,
   awsS3UploadFromClient,
   isUrlFromAwsS3,
-  NEXT_PUBLIC_UPYUN_PHOTO_PATH,
-  NEXT_PUBLIC_UPYUN_UPLOAD_PATH
 } from './aws-s3';
 import { HAS_AWS_S3_STORAGE, HAS_AWS_S3_STORAGE_CLIENT } from '@/site/config';
-import { HAS_UPYUN_STORAGE } from '@/site/config';
 
 const PREFIX_UPLOAD = 'upload';
 const PREFIX_PHOTO = 'photo';
@@ -51,7 +47,6 @@ const getFileNameFromBlobUrl = (url: string) =>
   (new URL(url).pathname.match(/\/(.+)$/)?.[1]) ?? '';
 
 export const uploadPhotoFromClient = async (
-  fileName: string,
   file: File | Blob,
   extension = 'jpg',
 ) => HAS_AWS_S3_STORAGE_CLIENT
@@ -60,31 +55,19 @@ export const uploadPhotoFromClient = async (
 
 export const convertUploadToPhoto = async (
   uploadUrl: string,
-  title: string,
   photoId?: string,
 ): Promise<string> => {
-  // const fileName = photoId ? `${PREFIX_PHOTO}-${photoId}` : `${PREFIX_PHOTO}`;
-  // const fileExtension = getExtensionFromBlobUrl(uploadUrl);
-  // const photoUrl = `${fileName}.${fileExtension ?? 'jpg'}`;
-
-  const tempUploadUrl = `${NEXT_PUBLIC_UPYUN_UPLOAD_PATH}/${title}`;
-  const photoUrl = `${NEXT_PUBLIC_UPYUN_PHOTO_PATH}/${title}`;
+  const fileName = photoId ? `${PREFIX_PHOTO}-${photoId}` : `${PREFIX_PHOTO}`;
+  const fileExtension = getExtensionFromBlobUrl(uploadUrl);
+  const photoUrl = `${fileName}.${fileExtension ?? 'jpg'}`;
 
   const useAwsS3 = HAS_AWS_S3_STORAGE && isUrlFromAwsS3(uploadUrl);
-  
-  let url = '';
-  if (HAS_UPYUN_STORAGE) {
-    url = await (useAwsS3
-      // ? awsS3Copy(tempUploadUrl, photoUrl, photoId === undefined)
-      ? awsS3Move(tempUploadUrl, photoUrl, photoId === undefined)
-      : vercelBlobCopy(uploadUrl, photoUrl, photoId === undefined));
-  }
 
-  if (!HAS_UPYUN_STORAGE) {
-    url = await (useAwsS3
-      ? awsS3Move(tempUploadUrl, photoUrl, photoId === undefined)
-      : vercelBlobCopy(uploadUrl, photoUrl, photoId === undefined));
+  const url = await (useAwsS3
+    ? awsS3Copy(uploadUrl, photoUrl, photoId === undefined)
+    : vercelBlobCopy(uploadUrl, photoUrl, photoId === undefined));
 
+  if (url) {
     await (useAwsS3
       ? awsS3Delete(getFileNameFromBlobUrl(uploadUrl))
       : vercelBlobDelete(uploadUrl));
