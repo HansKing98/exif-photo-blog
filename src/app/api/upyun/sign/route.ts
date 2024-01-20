@@ -14,7 +14,7 @@ export async function GET(
   { params }: { params: { method: string; path: string; contentMD5: string } }
 ) {
   if (true) {
-    const getHeaderSignFromService = async (query) => {
+    const getHeaderSignFromService = async (query: any) => {
       const bucket = new upyun.Bucket(
         NEXT_PUBLIC_UPYUN_SERVICE_NAME,
         UPYUN_OPERATOR_NAME,

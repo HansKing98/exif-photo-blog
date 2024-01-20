@@ -33,6 +33,7 @@
     "node_modules"
   ],
   "include": [
+    "upyun.d.ts",
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",

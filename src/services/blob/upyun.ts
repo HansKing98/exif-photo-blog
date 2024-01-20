@@ -1,28 +1,35 @@
-import upyun from "upyun";
+// 导入 generateNanoid 函数，用于生成随机 ID
+import { generateNanoid } from '@/utility/nanoid';
+import upyun from 'upyun';
 
-const NEXT_PUBLIC_RUNTIME = process.env.NEXT_PUBLIC_RUNTIME ?? "";
-const NEXT_PUBLIC_SITE_DOMAIN = process.env.NEXT_PUBLIC_SITE_DOMAIN ?? "";
+const NEXT_PUBLIC_RUNTIME = process.env.NEXT_PUBLIC_RUNTIME ?? '';
+const NEXT_PUBLIC_SITE_DOMAIN = process.env.NEXT_PUBLIC_SITE_DOMAIN ?? '';
 
 // 从环境变量获取 AWS S3 配置信息
 const NEXT_PUBLIC_UPYUN_SERVICE_NAME =
-  process.env.NEXT_PUBLIC_UPYUN_SERVICE_NAME ?? "";
-const NEXT_PUBLIC_UPYUN_HOSTNAME = process.env.NEXT_PUBLIC_UPYUN_HOSTNAME ?? "";
+  process.env.NEXT_PUBLIC_UPYUN_SERVICE_NAME ?? '';
+const NEXT_PUBLIC_UPYUN_HOSTNAME = process.env.NEXT_PUBLIC_UPYUN_HOSTNAME ?? '';
 //
 // 构建 AWS S3 存储桶的基本 URL
 export const AWS_S3_BASE_URL = NEXT_PUBLIC_UPYUN_HOSTNAME
   ? `https://${NEXT_PUBLIC_UPYUN_HOSTNAME}`
-  : "";
+  : '';
 export const NEXT_PUBLIC_UPYUN_PHOTO_PATH =
-  process.env.NEXT_PUBLIC_UPYUN_PHOTO_PATH ?? "";
+  process.env.NEXT_PUBLIC_UPYUN_PHOTO_PATH ?? '';
 export const NEXT_PUBLIC_UPYUN_UPLOAD_PATH =
-  process.env.NEXT_PUBLIC_UPYUN_UPLOAD_PATH ?? "";
+  process.env.NEXT_PUBLIC_UPYUN_UPLOAD_PATH ?? '';
 
-async function getHeaderSign(bucket, method, path, contentMD5 = null) {
+async function getHeaderSign(
+  bucket: any,
+  method: string,
+  path: string,
+  contentMD5: string | null = null
+) {
   let localHost = `https://${NEXT_PUBLIC_SITE_DOMAIN}`;
-  if (NEXT_PUBLIC_RUNTIME === "localhost") {
-    localHost = "http://localhost:3000";
+  if (NEXT_PUBLIC_RUNTIME === 'localhost') {
+    localHost = 'http://localhost:3000';
   }
-  let url = "/api/upyun/sign";
+  let url = '/api/upyun/sign';
   url = `${url}?method=${method}&path=${path}`;
   if (contentMD5) {
     url = `${url}&contentMD5=${contentMD5}`;
@@ -30,7 +37,7 @@ async function getHeaderSign(bucket, method, path, contentMD5 = null) {
 
   return fetch(`${localHost}${url}`).then((response) => {
     if (response.status !== 200) {
-      console.error("gen header sign faild!");
+      console.error('gen header sign faild!');
       return;
     }
     return response.json();
@@ -67,15 +74,15 @@ export const awsS3UploadFromClient = async (
 
   return await upyunClient
     .putFile(`${NEXT_PUBLIC_UPYUN_UPLOAD_PATH}/${key}`, file)
-    .then((res: Boolean) => {
+    .then((res: boolean| upyun.putFilePictureResponse) => {
       if (res) {
         return `${AWS_S3_BASE_URL}${NEXT_PUBLIC_UPYUN_UPLOAD_PATH}/${key}`;
       } else {
-        console.error("putFile 上传失败，返回值:", res);
+        console.error('putFile 上传失败，返回值:', res);
       }
     })
     .catch((err) => {
-      console.error("putFile 上传失败，返回值:", err);
+      console.error('putFile 上传失败，返回值:', err);
     });
 };
 
@@ -86,8 +93,8 @@ export const awsS3Move = async (
   addRandomSuffix?: boolean
 ) => {
   // 解析源文件名、扩展名和目标文件名
-  const name = fileNameSource.split(".")[0];
-  const extension = fileNameSource.split(".")[1];
+  const name = fileNameSource.split('.')[0];
+  const extension = fileNameSource.split('.')[1];
   const Key = addRandomSuffix
     ? `${name}-${generateBlobId()}.${extension}`
     : fileNameDestination;
