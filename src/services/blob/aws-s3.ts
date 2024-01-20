@@ -10,7 +10,7 @@ import {
   PutObjectCommand,
 } from '@aws-sdk/client-s3';
 // 导入 UPYUN JS SDK
-import upyun from 'upyun';
+import { Bucket, Client } from "upyun";
 // import { createReadStream } from 'fs';
 // https://github.com/upyun/node-sdk
 
@@ -56,14 +56,9 @@ async function getHeaderSign(
   });
 }
 // 客户端必须 只传 SERVICE_NAME，下一步从后端获取一次性秘钥
-var bucket = new upyun.Bucket(NEXT_PUBLIC_UPYUN_SERVICE_NAME);
+var bucket = new Bucket(NEXT_PUBLIC_UPYUN_SERVICE_NAME);
 // 客户端必须用 后台鉴权后的 getHeaderSign
-declare type upyun = {
-  foo: string
-  bar: boolean
-}
-
-var upyunClient = new upyun.Client(bucket, {}, getHeaderSign);
+var upyunClient = new Client(bucket, {}, getHeaderSign);
 
 
 
