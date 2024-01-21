@@ -25,7 +25,7 @@ export default function ImageInput({
     extension?: string,
     hasMultipleUploads?: boolean,
     isLastBlob?: boolean,
-    fileName: string
+    // fileName: string
   }) => Promise<any>
   maxSize?: number
   quality?: number
@@ -92,7 +92,7 @@ export default function ImageInput({
                     extension: file.name.split('.').pop()?.toLowerCase(),
                     hasMultipleUploads: files.length > 1,
                     isLastBlob: i === files.length - 1,
-                    fileName: file.name,
+                    // fileName: file.name,
                   };
                   
                   const canvas = ref.current;

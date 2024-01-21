@@ -39,7 +39,7 @@ export default function PhotoUpload({
               setUploadError('');
             }}
             onBlobReady={async ({
-              fileName,
+              // fileName,
               blob,
               extension, 
               hasMultipleUploads,
@@ -54,7 +54,7 @@ export default function PhotoUpload({
                 setUploadError('');
               } else {
                 return uploadPhotoFromClient(
-                  fileName,
+                  // fileName,
                   blob,
                   extension,
                 )

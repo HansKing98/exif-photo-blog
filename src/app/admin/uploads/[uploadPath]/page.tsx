@@ -30,7 +30,7 @@ export default async function UploadPage({ params: { uploadPath } }: Params) {
       backLabel="Uploads"
       breadcrumb={blobId}
     >
-      <PhotoForm initialPhotoForm={{ ...photoFormExif, title: fileName }} />
+      <PhotoForm initialPhotoForm={{ ...photoFormExif }} />
     </AdminChildPage>
   );
 };
