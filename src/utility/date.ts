@@ -6,11 +6,17 @@ const DATE_STRING_FORMAT_POSTGRES = 'yyyy-MM-dd HH:mm:ss';
 
 type AmbiguousTimestamp = number | string;
 
-export const formatDate = (date: Date, short?: boolean) =>
-  format(date, short? DATE_STRING_FORMAT_SHORT : DATE_STRING_FORMAT);
+export const formatDate = (date: Date, short?: boolean) =>{
+  return format(date, short? DATE_STRING_FORMAT_SHORT : DATE_STRING_FORMAT);
+};
 
-export const formatDateFromPostgresString = (date: string, short?: boolean) =>
-  formatDate(parse(date, DATE_STRING_FORMAT_POSTGRES, new Date()), short);
+export const formatDateFromPostgresString = (date: string, short?: boolean) =>{
+  if (String(new Date(date))  ==='Invalid Date') {
+    // 表单时间格式错误导致排序报错
+    return date;
+  }
+  return formatDate(parse(date, DATE_STRING_FORMAT_POSTGRES, new Date()), short);
+};
 
 export const formatDateForPostgres = (date: Date) =>
   date.toISOString().replace(
