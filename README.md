@@ -1,6 +1,9 @@
 # 📷 `EXIF` Photo Blog
 
-Features：
+`点击一键部署到 Vercel`
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Photo+Blog&demo-description=Store+photos+with+original+camera+data&demo-url=https://gallery.hansking.cn&demo-image=http://image.hansking.cn/picgo/my-gallery.png&project-name=Photo+Blog&repository-name=exif-photo-blog&repository-url=https://github.com/HansKing98/exif-photo-blog&from=templates&skippable-integrations=1&teamCreateStatus=hidden&stores=%5B%7B%22type%22%3A%22postgres%22%7D%2C%7B%22type%22%3A%22blob%22%7D%5D)
+
+Features 2024-01-19：
 
 > 1. 增加又拍云存储 - 通过环境变量控制
 >
@@ -22,15 +25,9 @@ Features：
 > ```
 
 
-# 以下下是原文档，未做修改
-
-https://github.com/sambecker/exif-photo-blog/assets/169298/4253ea54-558a-4358-8834-89943cfbafb4
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Photo+Blog&demo-description=Store+photos+with+original+camera+data&demo-url=https%3A%2F%2Fphotos.sambecker.com&demo-image=https%3A%2F%2Fphotos.sambecker.com%2Ftemplate-image-tight&project-name=Photo+Blog&repository-name=exif-photo-blog&repository-url=https%3A%2F%2Fgithub.com%2Fsambecker%2Fexif-photo-blog&from=templates&skippable-integrations=1&teamCreateStatus=hidden&stores=%5B%7B%22type%22%3A%22postgres%22%7D%2C%7B%22type%22%3A%22blob%22%7D%5D)
-
 Demo App
 -
-https://photos.sambecker.com
+![my-gallery](http://image.hansking.cn/picgo/my-gallery.png)
 
 Features
 -
