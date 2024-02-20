@@ -9,7 +9,7 @@ export default function RepoLink() {
         Made with
       </span>
       <Link
-        href="http://github.com/sambecker/exif-photo-blog"
+        href="http://github.com/hansking98/exif-photo-blog"
         target="_blank"
         className={clsx(
           'flex items-center gap-0.5',
